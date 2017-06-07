@@ -24,11 +24,13 @@ public class SocioDAO implements ISociosDAO {
 		try {
 			Statement statement = conexion.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);
+			
 			while(resultSet.next()){
 				String dni = resultSet.getString("DNI");
 				String nombre = resultSet.getString("NOMBRE");
 				String apellidos = resultSet.getString("APELLIDOS");
 				LocalDate fechaAlta = pasarDeCadenaAFecha(resultSet.getString("FECHA_ALTA"));
+				
 				Socio socio = new Socio(dni, nombre, apellidos, fechaAlta);
 				listaSocios.add(socio);
 			}
@@ -91,6 +93,7 @@ public class SocioDAO implements ISociosDAO {
 		try {
 			PreparedStatement pStatement = conexion.prepareStatement(sql);
 			pStatement.setString(1, socioABorrar.getDni());
+			
 			resultado = pStatement.executeUpdate();
 		}
 		catch (SQLException e) {
@@ -105,3 +108,9 @@ public class SocioDAO implements ISociosDAO {
 	}
 
 }
+
+
+
+
+
+
