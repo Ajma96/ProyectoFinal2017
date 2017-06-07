@@ -1,6 +1,7 @@
 package modelo.DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,6 +18,7 @@ public class LibroDAO implements ILibrosDAO {
 	public List<Libro> getListaLibros() {
 		List<Libro> listaLibros = new ArrayList<>();
 		String sql = "SELECT * FROM SOCIOS ORDER BY DNI;";
+		
 		try {
 			Statement statement = conexion.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);
@@ -32,25 +34,67 @@ public class LibroDAO implements ILibrosDAO {
 		catch (SQLException e) {
 			System.out.println("Error en la busqueda de lista de libros");
 		}
+		
 		return listaLibros;
 	}
 
 	@Override
 	public boolean addLibro(Libro libroNuevo) {
-		// TODO Auto-generated method stub
-		return false;
+		int resultado = 0;
+		String sql = "INSERT INTO LIBROS VALUES (?,?,?,?);";
+		
+		try {
+			PreparedStatement pStatement = conexion.prepareStatement(sql);
+					
+			pStatement.setString(1, libroNuevo.getIsbn());
+			pStatement.setString(2, libroNuevo.getTitulo());
+			pStatement.setString(3, libroNuevo.getAutores());
+			pStatement.setString(4, libroNuevo.getTematicas().toString());
+					
+			resultado = pStatement.executeUpdate();
+
+		}
+		catch (SQLException e) {
+				System.out.println("Error en la inserción del libro");
+		}
+				
+		return resultado != 0;
 	}
 
 	@Override
 	public boolean borrarLibro(Libro libroParaBorrar) {
-		// TODO Auto-generated method stub
-		return false;
+		int resultado = 0;
+		String sql = "DELETE FROM LIBROSS WHERE ISBN = ?;";
+		
+		try {
+			PreparedStatement pStatement = conexion.prepareStatement(sql);
+			pStatement.setString(1, libroParaBorrar.getIsbn());
+			resultado = pStatement.executeUpdate();
+		}
+		catch (SQLException e) {
+			System.out.println("Error borrando libro");
+		}
+		
+		return resultado != 0;
 	}
 
 	@Override
 	public boolean estaLibroDisponible(String isbn) {
+		String sql = "SELECT COUNT(ISBN) FROM LIBROS WHERE ISBN = ?;";
+		boolean libroDisponible = false;
 		
-		return false;
+		try {
+			PreparedStatement pStatement = conexion.prepareStatement(sql);
+			pStatement.setString(1, isbn);
+			
+			if(pStatement.executeUpdate() == 1)
+				libroDisponible = true;
+		}
+		catch (SQLException e) {
+			System.out.println("Error buscando libro en la BD");
+		}
+		
+		return libroDisponible;
 	}
 
 }

@@ -20,6 +20,7 @@ public class SocioDAO implements ISociosDAO {
 	public List<Socio> getListaSocios() {
 		List<Socio> listaSocios = new ArrayList<>();
 		String sql = "SELECT * FROM SOCIOS ORDER BY DNI;";
+		
 		try {
 			Statement statement = conexion.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);
@@ -35,6 +36,7 @@ public class SocioDAO implements ISociosDAO {
 		catch (SQLException e) {
 			System.out.println("Error en la lectura de la DB");
 		}
+		
 		return listaSocios;
 	}
 
@@ -62,6 +64,7 @@ public class SocioDAO implements ISociosDAO {
 		// TODO Auto-generated method stub
 		int resultado = 0;
 		String sql = "INSERT INTO SOCIOS VALUES (?,?,?,?);";
+		
 		try {
 			PreparedStatement pStatement = conexion.prepareStatement(sql);
 			
@@ -83,7 +86,7 @@ public class SocioDAO implements ISociosDAO {
 	@Override
 	public boolean borrarSocio(Socio socioABorrar) {
 		int resultado = 0;
-		String sql = "DELETE FROM SOCIOS WHERE DNI = ?";
+		String sql = "DELETE FROM SOCIOS WHERE DNI = ?;";
 		
 		try {
 			PreparedStatement pStatement = conexion.prepareStatement(sql);
