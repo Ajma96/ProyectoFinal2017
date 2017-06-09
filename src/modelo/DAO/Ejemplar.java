@@ -1,13 +1,13 @@
 package modelo.DAO;
 
-public class Ejemplar implements Comparable<Ejemplar>{
-	private String idEjemplar;
+public class Ejemplar/* implements Comparable<Ejemplar>*/{
+	private int idEjemplar;
 	private String isbn;
 	private String editorial;
 	private int edicion;
 	
 	
-	public Ejemplar(String idEjemplar, String isbn, String editorial, int edicion) {
+	public Ejemplar(int idEjemplar, String isbn, String editorial, int edicion) {
 		this.idEjemplar = idEjemplar;
 		this.isbn = isbn;
 		this.editorial = editorial;
@@ -15,11 +15,11 @@ public class Ejemplar implements Comparable<Ejemplar>{
 	}
 
 
-	public String getIdEjemplar() {
+	public int getIdEjemplar() {
 		return idEjemplar;
 	}
 
-	public void setIdEjemplar(String idEjemplar) {
+	public void setIdEjemplar(int idEjemplar) {
 		this.idEjemplar = idEjemplar;
 	}
 
@@ -47,11 +47,8 @@ public class Ejemplar implements Comparable<Ejemplar>{
 		this.edicion = edicion;
 	}
 	
-	
-	@Override
-	public int compareTo(Ejemplar o) {
-		return idEjemplar.compareTo(o.idEjemplar);
-	}
+
+	//No hay compareTo();
 
 
 	@Override

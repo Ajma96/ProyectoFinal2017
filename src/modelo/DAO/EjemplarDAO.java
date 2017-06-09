@@ -24,7 +24,7 @@ public class EjemplarDAO implements IEjemplaresDAO{
 			ResultSet resultSet = statement.executeQuery(sql);
 			
 			while(resultSet.next()){
-				String idEjemplar = resultSet.getString("ID_EJEMPLAR");
+				int idEjemplar = resultSet.getInt("ID_EJEMPLAR"); //Autoid
 				String isbn = resultSet.getString("ISBN");
 				String editorial = resultSet.getString("EDITORIAL");
 				int edicion = resultSet.getInt("EDICION");
@@ -67,7 +67,7 @@ public class EjemplarDAO implements IEjemplaresDAO{
 		try {
 			PreparedStatement pStatement = conexion.prepareStatement(sql);
 					
-			pStatement.setString(1, ejemplarNuevo.getIdEjemplar());
+			pStatement.setInt(1, ejemplarNuevo.getIdEjemplar());
 			pStatement.setString(2, ejemplarNuevo.getIsbn());
 			pStatement.setString(3, ejemplarNuevo.getEditorial());
 			pStatement.setInt(4, ejemplarNuevo.getEdicion());
@@ -90,7 +90,7 @@ public class EjemplarDAO implements IEjemplaresDAO{
 		try {
 			PreparedStatement pStatement = conexion.prepareStatement(sql);
 			pStatement.setString(1, ejemplarParaBorrar.getIsbn());
-			pStatement.setString(2, ejemplarParaBorrar.getIdEjemplar());
+			pStatement.setInt(2, ejemplarParaBorrar.getIdEjemplar());
 			
 			resultado = pStatement.executeUpdate();
 		}
