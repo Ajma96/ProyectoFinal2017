@@ -46,9 +46,6 @@ public class Ejemplar/* implements Comparable<Ejemplar>*/{
 	public void setEdicion(int edicion) {
 		this.edicion = edicion;
 	}
-	
-
-	//No hay compareTo();
 
 
 	@Override

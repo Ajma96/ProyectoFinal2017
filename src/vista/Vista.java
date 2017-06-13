@@ -1,57 +1,28 @@
 package vista;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JTable;
-import javax.swing.JInternalFrame;
-import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
-import java.awt.Component;
-import javax.swing.Box;
-import javax.swing.JLabel;
-import javax.swing.JTextPane;
-import javax.swing.UIManager;
-import javax.swing.JSplitPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class Vista extends JFrame {
-	private JTextField textField;
+	
+	private JTextField textField_0;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTable table;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Vista frame = new Vista();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Vista() {
+		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
@@ -82,8 +53,8 @@ public class Vista extends JFrame {
 		JMenuItem mntmCrditos = new JMenuItem("Créditos");
 		mnAbout.add(mntmCrditos);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		textField_0 = new JTextField();
+		textField_0.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
@@ -111,7 +82,7 @@ public class Vista extends JFrame {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(48)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(textField, Alignment.LEADING)
+								.addComponent(textField_0, Alignment.LEADING)
 								.addComponent(textField_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
 								.addComponent(textField_2, Alignment.LEADING)
 								.addComponent(textField_3, Alignment.LEADING)))
@@ -133,7 +104,7 @@ public class Vista extends JFrame {
 						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textField_0, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)

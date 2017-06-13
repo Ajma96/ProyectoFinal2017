@@ -3,10 +3,11 @@ package modelo.DAO;
 import java.time.LocalDate;
 
 public class Prestamo {
-	private LocalDate fechaPrestamo;
-	private String dni; //No olvides arreglar la DB
+	
+	private String dni;
 	private String isbn;
 	private String idEjemplar;
+	private LocalDate fechaPrestamo;
 	
 	
 	public Prestamo(LocalDate fechaPrestamo, String dni, String isbn, String idEjemplar) {
