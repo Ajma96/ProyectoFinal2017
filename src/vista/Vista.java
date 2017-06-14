@@ -19,6 +19,50 @@ public class Vista extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTable table;
+	private JButton btnAadir;
+	private JButton btnBorrar;
+	private JButton btnActualizar;
+
+
+
+	public JTextField getTextField_0() {
+		return textField_0;
+	}
+
+
+	public JTextField getTextField_1() {
+		return textField_1;
+	}
+
+
+	public JTextField getTextField_2() {
+		return textField_2;
+	}
+
+
+	public JTextField getTextField_3() {
+		return textField_3;
+	}
+
+
+	public JTable getTable() {
+		return table;
+	}
+
+
+	public JButton getBtnAadir() {
+		return btnAadir;
+	}
+
+
+	public JButton getBtnBorrar() {
+		return btnBorrar;
+	}
+
+	
+	public JButton getBtnActualizar() {
+		return btnActualizar;
+	}
 
 
 	public Vista() {
@@ -67,11 +111,11 @@ public class Vista extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
-		JButton btnAadir = new JButton("Añadir");
+		btnAadir = new JButton("Añadir");
 		
-		JButton btnBorrar = new JButton("Borrar");
+		btnBorrar = new JButton("Borrar");
 		
-		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar = new JButton("Actualizar");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

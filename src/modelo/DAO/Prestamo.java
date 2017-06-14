@@ -10,11 +10,11 @@ public class Prestamo {
 	private LocalDate fechaPrestamo;
 	
 	
-	public Prestamo(LocalDate fechaPrestamo, String dni, String isbn, String idEjemplar) {
-		this.fechaPrestamo = fechaPrestamo;
-		this.dni = dni;
-		this.isbn = isbn;
-		this.idEjemplar = idEjemplar;
+	public Prestamo(String dni, String isbn, String idEjemplar, LocalDate fechaPrestamo) {
+		this.dni 			= dni;
+		this.isbn 			= isbn;
+		this.idEjemplar 	= idEjemplar;
+		this.fechaPrestamo  = fechaPrestamo;
 	}
 
 	
