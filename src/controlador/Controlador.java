@@ -125,16 +125,25 @@ public class Controlador implements ActionListener {
 	}
 	
 	private void mostrarLibro(int index) {
-		
+		vista.getTextField_0().setText(listaLibros.get(index).getIsbn());
+		vista.getTextField_1().setText(listaLibros.get(index).getTitulo());
+		vista.getTextField_2().setText(listaLibros.get(index).getAutores());
+		vista.getTextField_3().setText(listaLibros.get(index).getTematicas());
 	}
 	
 	private void mostrarEjemplar(int index) {
-		
+		vista.getTextField_0().setText(listaEjemplares.get(index).getIdEjemplar() + "");
+		vista.getTextField_1().setText(listaEjemplares.get(index).getIsbn());
+		vista.getTextField_2().setText(listaEjemplares.get(index).getEditorial());
+		vista.getTextField_3().setText(listaEjemplares.get(index).getEdicion() + "");
 	}
 	
-	private void mostrarPrestamo(int index) {
-		
-	}
+	/*private void mostrarPrestamo(int index) {
+		vista.getTextField_0().setText(listaPrestamos.get(index).getDni());
+		vista.getTextField_1().setText(listaPrestamos.get(index).getIsbn());
+		vista.getTextField_2().setText(listaPrestamos.get(index).getIdEjemplar());
+		vista.getTextField_3().setText(listaPrestamos.get(index).getFechaPrestamo().toString());
+	}*/
 	
 	private static LocalDate pasarDeCadenaAFecha(String fecha) {
 		return LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
