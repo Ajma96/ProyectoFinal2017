@@ -9,9 +9,9 @@ public class Ejemplar/* implements Comparable<Ejemplar>*/{
 	
 	public Ejemplar(int idEjemplar, String isbn, String editorial, int edicion) {
 		this.idEjemplar = idEjemplar;
-		this.isbn = isbn;
-		this.editorial = editorial;
-		this.edicion = edicion;
+		this.isbn 		= isbn;
+		this.editorial 	= editorial;
+		this.edicion 	= edicion;
 	}
 
 

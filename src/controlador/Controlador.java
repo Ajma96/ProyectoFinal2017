@@ -62,7 +62,7 @@ public class Controlador implements ActionListener {
 		case "Actualizar":
 			break;
 			
-		default: System.out.println("Error al detectar actionPerformed");
+		// default: System.out.println("Error al detectar actionPerformed");
 		}
 		
 	}

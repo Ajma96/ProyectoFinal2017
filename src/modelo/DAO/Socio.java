@@ -13,10 +13,10 @@ public class Socio implements Comparable<Socio> {
 	
 	
 	public Socio(String dni, String nombre, String apellidos, LocalDate fechaAlta) {
-		this.dni = dni;
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.fechaAlta = fechaAlta;
+		this.dni 		= dni;
+		this.nombre 	= nombre;
+		this.apellidos  = apellidos;
+		this.fechaAlta  = fechaAlta;
 	}
 
 	public String getDni() {

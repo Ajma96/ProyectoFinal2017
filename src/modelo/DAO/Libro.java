@@ -9,10 +9,10 @@ public class Libro implements Comparable<Libro>{
 	
 	
 	public Libro(String isbn, String titulo, String autores, String tematicas) {
-		this.isbn = isbn;
-		this.titulo = titulo;
-		this.autores = autores;
-		this.tematicas = tematicas;
+		this.isbn 		= isbn;
+		this.titulo 	= titulo;
+		this.autores 	= autores;
+		this.tematicas 	= tematicas;
 	}
 
 
