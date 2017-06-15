@@ -43,13 +43,13 @@ public class SocioDAO implements ISociosDAO {
 	}
 
 	@Override
-	public boolean existeSocio(String DNI) {
+	public boolean existeSocio(String dni) {
 		String sql = "SELECT COUNT(DNI) FROM SOCIOS WHERE DNI = ?;";
 		boolean existeSocio = false;
 		
 		try {
 			PreparedStatement pStatement = conexion.prepareStatement(sql);
-			pStatement.setString(1, DNI);
+			pStatement.setString(1, dni);
 			
 			if(pStatement.executeUpdate() == 1)
 				existeSocio = true;
@@ -63,7 +63,6 @@ public class SocioDAO implements ISociosDAO {
 
 	@Override
 	public boolean addSocio(Socio nuevoSocio) {
-		// TODO Auto-generated method stub
 		int resultado = 0;
 		String sql = "INSERT INTO SOCIOS VALUES (?,?,?,?);";
 		

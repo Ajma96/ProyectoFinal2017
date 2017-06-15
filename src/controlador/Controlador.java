@@ -12,6 +12,7 @@ import modelo.DAO.EjemplarDAO;
 import modelo.DAO.Libro;
 import modelo.DAO.LibroDAO;
 import modelo.DAO.Prestamo;
+import modelo.DAO.PrestamoDAO;
 import modelo.DAO.Socio;
 import modelo.DAO.SocioDAO;
 import vista.Vista;
@@ -25,21 +26,25 @@ public class Controlador implements ActionListener {
 	private List<Libro> listaLibros;
 	private EjemplarDAO ejemplarDAO;
 	private List<Ejemplar> listaEjemplares;
+	private PrestamoDAO prestamoDAO;
+	private List<Prestamo> listaPrestamos;
 	
 	
 	
-	public Controlador(Vista vista, SocioDAO socioDAO, LibroDAO libroDAO, EjemplarDAO ejemplarDAO)
+	public Controlador(Vista vista, SocioDAO socioDAO, LibroDAO libroDAO, EjemplarDAO ejemplarDAO, PrestamoDAO prestamoDAO)
 	{
 		this.vista 		 = vista;
 		this.socioDAO 	 = socioDAO;
 		this.libroDAO 	 = libroDAO;
 		this.ejemplarDAO = ejemplarDAO;
+		this.prestamoDAO = prestamoDAO;
 		
 		ActionListener(this);
 		
-		listaSocios = socioDAO.getListaSocios();
-		listaLibros = libroDAO.getListaLibros();
+		listaSocios 	= socioDAO.getListaSocios();
+		listaLibros 	= libroDAO.getListaLibros();
 		listaEjemplares = ejemplarDAO.getListaEjemplares();
+		listaPrestamos  = prestamoDAO.getListaPrestamos();
 	}
 
 
@@ -108,14 +113,14 @@ public class Controlador implements ActionListener {
 		return new Ejemplar(idEjemplar, isbn, editorial, edicion);
 	}
 	
-	/*private Prestamo generarPrestamo() {
+	private Prestamo generarPrestamo() {
 		String dni 				= vista.getTextField_0().getText();
 		String isbn 			= vista.getTextField_1().getText();
 		String idEjemplar 		= vista.getTextField_2().getText();
 		LocalDate fechaPrestamo = pasarDeCadenaAFecha(vista.getTextField_3().getText());
 		
 		return new Prestamo(dni, isbn, idEjemplar, fechaPrestamo);
-	}*/		// <- Implementar PrestamosDAO 
+	}
 	
 	private void mostrarSocio(int index) {
 		vista.getTextField_0().setText(listaSocios.get(index).getDni());
@@ -138,12 +143,12 @@ public class Controlador implements ActionListener {
 		vista.getTextField_3().setText(listaEjemplares.get(index).getEdicion() + "");
 	}
 	
-	/*private void mostrarPrestamo(int index) {
+	private void mostrarPrestamo(int index) {
 		vista.getTextField_0().setText(listaPrestamos.get(index).getDni());
 		vista.getTextField_1().setText(listaPrestamos.get(index).getIsbn());
 		vista.getTextField_2().setText(listaPrestamos.get(index).getIdEjemplar());
 		vista.getTextField_3().setText(listaPrestamos.get(index).getFechaPrestamo().toString());
-	}*/
+	}
 	
 	private static LocalDate pasarDeCadenaAFecha(String fecha) {
 		return LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
