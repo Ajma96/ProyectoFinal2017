@@ -22,6 +22,12 @@ public class Vista extends JFrame {
 	private JButton btnAadir;
 	private JButton btnBorrar;
 	private JButton btnActualizar;
+	private JMenuItem mntmLibros;
+	private JMenuItem mntmEjemplares;
+	private JMenuItem mntmSocios;
+	private JMenuItem mntmPrstamos;
+	private JMenuItem mntmVersin;
+	private JMenuItem mntmCrditos;
 
 
 
@@ -64,11 +70,34 @@ public class Vista extends JFrame {
 		return btnActualizar;
 	}
 
+	public JMenuItem getMntmLibros() {
+		return mntmLibros;
+	}
+	
+	public JMenuItem getMntmEjemplares() {
+		return mntmEjemplares;
+	}
+	
+	public JMenuItem getMntmSocios() {
+		return mntmSocios;
+	}
+	
+	public JMenuItem getMntmPrestamos() {
+		return mntmPrstamos;
+	}
+	
+	public JMenuItem getMntmVersin() {
+		return mntmVersin;
+	}
+	
+	public JMenuItem getMntmCrditos() {
+		return mntmCrditos;
+	}
 
 	public Vista() {
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 550, 500);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -76,25 +105,25 @@ public class Vista extends JFrame {
 		JMenu mnCargar = new JMenu("Cargar...");
 		menuBar.add(mnCargar);
 		
-		JMenuItem mntmLibros = new JMenuItem("... Libros");
+		mntmLibros = new JMenuItem("... Libros");
 		mnCargar.add(mntmLibros);
 		
-		JMenuItem mntmEjemplares = new JMenuItem("... Ejemplares");
+		mntmEjemplares = new JMenuItem("... Ejemplares");
 		mnCargar.add(mntmEjemplares);
 		
-		JMenuItem mntmSocios = new JMenuItem("... Socios");
+		mntmSocios = new JMenuItem("... Socios");
 		mnCargar.add(mntmSocios);
 		
-		JMenuItem mntmPrstamos = new JMenuItem("... Préstamos");
+		mntmPrstamos = new JMenuItem("... Préstamos");
 		mnCargar.add(mntmPrstamos);
 		
 		JMenu mnAbout = new JMenu("About");
 		menuBar.add(mnAbout);
 		
-		JMenuItem mntmVersin = new JMenuItem("Versión");
+		mntmVersin = new JMenuItem("Versión");
 		mnAbout.add(mntmVersin);
 		
-		JMenuItem mntmCrditos = new JMenuItem("Créditos");
+		mntmCrditos = new JMenuItem("Créditos");
 		mnAbout.add(mntmCrditos);
 		
 		textField_0 = new JTextField();
@@ -112,56 +141,55 @@ public class Vista extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		
 		btnAadir = new JButton("Añadir");
-		
 		btnBorrar = new JButton("Borrar");
-		
 		btnActualizar = new JButton("Actualizar");
+		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(24)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(textField_1)
+						.addComponent(textField_0, 286, 286, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(textField_3, Alignment.LEADING)
+								.addComponent(textField_2, Alignment.LEADING, 286, 286, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGap(67)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnAadir)
+						.addComponent(btnBorrar)
+						.addComponent(btnActualizar))
+					.addGap(71))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(48)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(textField_0, Alignment.LEADING)
-								.addComponent(textField_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-								.addComponent(textField_2, Alignment.LEADING)
-								.addComponent(textField_3, Alignment.LEADING)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(18)
-							.addComponent(btnAadir)
-							.addGap(18)
-							.addComponent(btnBorrar))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(55)
-							.addComponent(btnActualizar)))
-					.addGap(48))
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(40)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 241, GroupLayout.PREFERRED_SIZE)
+					.addGap(23)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(textField_0, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGap(14)
 							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(32)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnAadir)
-								.addComponent(btnBorrar))
-							.addGap(18)
-							.addComponent(btnActualizar)))
-					.addGap(15))
+							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnAadir)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnActualizar)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnBorrar)))
+					.addGap(49))
 		);
 		
 		table = new JTable();

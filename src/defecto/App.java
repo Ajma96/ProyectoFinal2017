@@ -24,6 +24,7 @@ public class App {
 				}
 				catch (Exception e) {
 					System.out.println("Error: Error al ejecutar main()");
+					//e.printStackTrace(); <- Para buscar el fallo
 				}
 			}
 		});

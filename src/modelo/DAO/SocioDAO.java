@@ -78,7 +78,7 @@ public class SocioDAO implements ISociosDAO {
 
 		}
 		catch (SQLException e) {
-			System.out.println("Error en la inserción del usuario");
+			System.out.println("Error en la inserción del socio");
 		}
 		
 		return resultado != 0;
@@ -103,7 +103,20 @@ public class SocioDAO implements ISociosDAO {
 	}
 	
 	public static LocalDate pasarDeCadenaAFecha(String fecha) {
-		return LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		return LocalDate.parse(fecha, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+	}
+	
+	public static Object [][] listaAMatriz (List<Socio> lista) {
+		Object [][] matriz = new Object [lista.size()][4];
+			
+			for (int i=0 ; i < lista.size() ; i++) {
+				matriz[i][0] = lista.get(i).getDni();
+				matriz[i][1] = lista.get(i).getNombre();
+				matriz[i][2] = lista.get(i).getApellidos();
+				matriz[i][3] = lista.get(i).getFechaAlta();
+			}
+		
+		return matriz;	
 	}
 
 }

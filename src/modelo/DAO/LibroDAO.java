@@ -17,7 +17,7 @@ public class LibroDAO implements ILibrosDAO {
 	@Override
 	public List<Libro> getListaLibros() {
 		List<Libro> listaLibros = new ArrayList<>();
-		String sql = "SELECT * FROM SOCIOS ORDER BY DNI;";
+		String sql = "SELECT * FROM LIBROS;";
 		
 		try {
 			Statement statement = conexion.createStatement();
@@ -33,7 +33,7 @@ public class LibroDAO implements ILibrosDAO {
 			}
 		}
 		catch (SQLException e) {
-			System.out.println("Error en la busqueda de lista de libros");
+			System.out.println("Error en la búsqueda de libros");
 		}
 		
 		return listaLibros;
@@ -99,6 +99,19 @@ public class LibroDAO implements ILibrosDAO {
 		return resultado != 0;
 	}
 
+	public static Object [][] listaAMatriz (List<Libro> lista) {
+		Object [][] matriz = new Object [lista.size()][4];
+			
+			for (int i=0 ; i < lista.size() ; i++) {
+				matriz[i][0] = lista.get(i).getIsbn();
+				matriz[i][1] = lista.get(i).getTitulo();
+				matriz[i][2] = lista.get(i).getAutores();
+				matriz[i][3] = lista.get(i).getTematicas();
+			}
+		
+		return matriz;	
+	}
+	
 }
 
 

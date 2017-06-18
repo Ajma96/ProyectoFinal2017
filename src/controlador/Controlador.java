@@ -7,6 +7,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import modelo.DAO.Ejemplar;
 import modelo.DAO.EjemplarDAO;
 import modelo.DAO.Libro;
@@ -28,6 +30,8 @@ public class Controlador implements ActionListener {
 	private List<Ejemplar> listaEjemplares;
 	private PrestamoDAO prestamoDAO;
 	private List<Prestamo> listaPrestamos;
+	
+	private static String tipoObjeto = "";
 	
 	
 	
@@ -53,30 +57,116 @@ public class Controlador implements ActionListener {
 	{
 		switch(e.getActionCommand())
 		{
-		case "Añadir":
-			limpiarCampos();
-			Socio socio = generarSocio();
-			listaSocios.add(socio);
-			Collections.sort(listaSocios);
-			socioDAO.addSocio(socio);
-			break;
+		case "Añadir": //GENERALIZAR
+			
+			switch (tipoObjeto)
+			{
+			case "Libro":
+				Libro libroNuevo = generarLibro();
+				listaLibros.add(libroNuevo);
+				Collections.sort(listaLibros);
+				libroDAO.addLibro(libroNuevo);
+				//limpiarCampos();
+				System.out.println("Libro añadido");
+				break;
+				
+			case "Ejemplar":
+				Ejemplar ejemplarNuevo = generarEjemplar();
+				listaEjemplares.add(ejemplarNuevo);
+				//Collections.sort(listaEjemplares);		<- ¿Falta el compareTo?	
+				ejemplarDAO.addEjemplar(ejemplarNuevo);
+				//limpiarCampos();
+				System.out.println("Ejemplar añadido");
+				break;
+				
+			case "Socio":
+				Socio socioNuevo = generarSocio();
+				listaSocios.add(socioNuevo);
+				Collections.sort(listaSocios);
+				socioDAO.addSocio(socioNuevo);
+				//limpiarCampos();
+				System.out.println("Socio añadido");
+				break;
+				
+			case "Préstamo":
+				Prestamo prestamoNuevo = generarPrestamo();
+				listaPrestamos.add(prestamoNuevo);
+				//Collections.sort(listaPrestamos);
+				prestamoDAO.addPrestamo(prestamoNuevo);
+				//limpiarCampos();
+				System.out.println("Préstamo añadido");
+			
+			default:
+				JOptionPane.showMessageDialog(vista, "Para añadir un objeto, primero tienes que hacer esto:\n" + 
+									"1. Cargar... (el tipo de objeto que quieras introducir)\n" + 
+									"2. Rellenar los campos obligatorios y asegurarte de que son correctos los datos");
+				break;
+			}
+			break; //Salir añadir
 			
 		case "Borrar":
+			Socio socioABorrar = generarSocio();
+			int reply = JOptionPane.showConfirmDialog(vista, "¿Seguro que desea borrarlo?", "Confirmación", JOptionPane.YES_NO_OPTION);
+				if (reply == JOptionPane.YES_NO_OPTION) {
+					listaSocios.remove(socioABorrar);
+					socioDAO.borrarSocio(socioABorrar);
+					System.out.println("Socio borrado");
+				}
+				else
+					System.out.println("No ha sido borrado");
 			break;
 			
 		case "Actualizar":
+			System.out.println("Socio actualizado");
 			break;
 			
-		// default: System.out.println("Error al detectar actionPerformed");
+		case "... Libros":
+			setTipoObjeto("Libro");
+			mostrarLibro(0);
+			break;
+			
+		case "... Ejemplares":
+			setTipoObjeto("Ejemplar");
+			mostrarEjemplar(0);
+			break;
+			
+		case "... Socios":
+			setTipoObjeto("Socio");
+			mostrarSocio(0);
+			break;
+			
+		case "... Préstamos":
+			setTipoObjeto("Préstamo");
+			mostrarPrestamo(0);
+			break;
+			
+		case "Versión":
+			JOptionPane.showMessageDialog(vista, "Versión 0.1");
+			break;
+			
+		case "Créditos":
+			JOptionPane.showMessageDialog(vista, "Programa desarrollado por Alejandro Macías Alcázar\n" + 
+											"\nMención especial a Ángel por echarme una mano con las dudas");
+			break;
+			
+		default: System.out.println("Error: actionPerformed desconocida");
+		
 		}
 		
 	}
 
 	
 	private void ActionListener(ActionListener escuchante) {
-		vista.getBtnAadir()		.addActionListener(escuchante);
-		vista.getBtnActualizar().addActionListener(escuchante);
-		vista.getBtnBorrar()	.addActionListener(escuchante);
+		
+		vista.getBtnAadir()		 .addActionListener(escuchante);
+		vista.getBtnActualizar() .addActionListener(escuchante);
+		vista.getBtnBorrar()	 .addActionListener(escuchante);
+		vista.getMntmLibros()	 .addActionListener(escuchante);
+		vista.getMntmEjemplares().addActionListener(escuchante);
+		vista.getMntmSocios()	 .addActionListener(escuchante);
+		vista.getMntmPrestamos() .addActionListener(escuchante);
+		vista.getMntmVersin()	 .addActionListener(escuchante);
+		vista.getMntmCrditos()	 .addActionListener(escuchante);
 	}
 
 	private void limpiarCampos() {
@@ -137,7 +227,7 @@ public class Controlador implements ActionListener {
 	}
 	
 	private void mostrarEjemplar(int index) {
-		vista.getTextField_0().setText(listaEjemplares.get(index).getIdEjemplar() + "");
+		vista.getTextField_0().setText(listaEjemplares.get(index).getIdEjemplar() + "");  // "": int -> String (implicit)
 		vista.getTextField_1().setText(listaEjemplares.get(index).getIsbn());
 		vista.getTextField_2().setText(listaEjemplares.get(index).getEditorial());
 		vista.getTextField_3().setText(listaEjemplares.get(index).getEdicion() + "");
@@ -150,9 +240,14 @@ public class Controlador implements ActionListener {
 		vista.getTextField_3().setText(listaPrestamos.get(index).getFechaPrestamo().toString());
 	}
 	
-	private static LocalDate pasarDeCadenaAFecha(String fecha) {
-		return LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	public static void setTipoObjeto(String tipo) {
+		tipoObjeto = tipo;
 	}
+	
+	private static LocalDate pasarDeCadenaAFecha(String fecha) {
+		return LocalDate.parse(fecha, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+	}
+	
 }
 
 

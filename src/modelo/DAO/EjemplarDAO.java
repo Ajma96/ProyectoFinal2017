@@ -100,6 +100,19 @@ public class EjemplarDAO implements IEjemplaresDAO{
 		
 		return resultado != 0;
 	}
+	
+	public static Object [][] listaAMatriz (List<Ejemplar> lista) {
+		Object [][] matriz = new Object [lista.size()][4];
+			
+			for (int i=0 ; i < lista.size() ; i++) {
+				matriz[i][0] = lista.get(i).getIdEjemplar();
+				matriz[i][1] = lista.get(i).getIsbn();
+				matriz[i][2] = lista.get(i).getEditorial();
+				matriz[i][3] = lista.get(i).getEdicion();
+			}
+		
+		return matriz;	
+	}
 
 }
 

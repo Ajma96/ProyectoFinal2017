@@ -111,7 +111,20 @@ public class PrestamoDAO implements IPrestamosDAO {
 	}
 
 	public static LocalDate pasarDeCadenaAFecha(String fecha) {
-		return LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		return LocalDate.parse(fecha, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+	}
+	
+	public static Object [][] listaAMatriz (List<Prestamo> lista) {
+		Object [][] matriz = new Object [lista.size()][4];
+			
+			for (int i=0 ; i < lista.size() ; i++) {
+				matriz[i][0] = lista.get(i).getDni();
+				matriz[i][1] = lista.get(i).getIsbn();
+				matriz[i][2] = lista.get(i).getIdEjemplar();
+				matriz[i][3] = lista.get(i).getFechaPrestamo();
+			}
+		
+		return matriz;	
 	}
 
 }
