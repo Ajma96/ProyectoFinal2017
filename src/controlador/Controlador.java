@@ -57,7 +57,7 @@ public class Controlador implements ActionListener {
 	{
 		switch(e.getActionCommand())
 		{
-		case "Añadir": //GENERALIZAR
+		case "Añadir":
 			
 			switch (tipoObjeto)
 			{
@@ -67,16 +67,16 @@ public class Controlador implements ActionListener {
 				Collections.sort(listaLibros);
 				libroDAO.addLibro(libroNuevo);
 				//limpiarCampos();
-				System.out.println("Libro añadido");
+				vista.getOutMsg().setText("Libro añadido");
 				break;
 				
 			case "Ejemplar":
 				Ejemplar ejemplarNuevo = generarEjemplar();
 				listaEjemplares.add(ejemplarNuevo);
-				//Collections.sort(listaEjemplares);		<- ¿Falta el compareTo?	
+				Collections.sort(listaEjemplares);
 				ejemplarDAO.addEjemplar(ejemplarNuevo);
 				//limpiarCampos();
-				System.out.println("Ejemplar añadido");
+				vista.getOutMsg().setText("Ejemplar añadido");
 				break;
 				
 			case "Socio":
@@ -85,58 +85,136 @@ public class Controlador implements ActionListener {
 				Collections.sort(listaSocios);
 				socioDAO.addSocio(socioNuevo);
 				//limpiarCampos();
-				System.out.println("Socio añadido");
+				vista.getOutMsg().setText("Socio añadido");
 				break;
 				
 			case "Préstamo":
 				Prestamo prestamoNuevo = generarPrestamo();
 				listaPrestamos.add(prestamoNuevo);
-				//Collections.sort(listaPrestamos);
+				Collections.sort(listaPrestamos);
 				prestamoDAO.addPrestamo(prestamoNuevo);
 				//limpiarCampos();
-				System.out.println("Préstamo añadido");
+				vista.getOutMsg().setText("Préstamo añadido");
 			
 			default:
 				JOptionPane.showMessageDialog(vista, "Para añadir un objeto, primero tienes que hacer esto:\n" + 
 									"1. Cargar... (el tipo de objeto que quieras introducir)\n" + 
 									"2. Rellenar los campos obligatorios y asegurarte de que son correctos los datos");
-				break;
 			}
-			break; //Salir añadir
+			break; // Fin de la opción añadir
+			
+			
 			
 		case "Borrar":
-			Socio socioABorrar = generarSocio();
-			int reply = JOptionPane.showConfirmDialog(vista, "¿Seguro que desea borrarlo?", "Confirmación", JOptionPane.YES_NO_OPTION);
-				if (reply == JOptionPane.YES_NO_OPTION) {
-					listaSocios.remove(socioABorrar);
-					socioDAO.borrarSocio(socioABorrar);
-					System.out.println("Socio borrado");
+			
+			switch (tipoObjeto)
+			{
+			case "Libro":
+				Libro libroABorrar = generarLibro();
+				int reply_0 = JOptionPane.showConfirmDialog(vista, "¿Seguro que desea borrar el libro?", "Confirmación", JOptionPane.YES_NO_OPTION);
+				if (reply_0 == JOptionPane.YES_NO_OPTION) {
+					listaLibros.remove(libroABorrar);
+					libroDAO.borrarLibro(libroABorrar);
+					vista.getOutMsg().setText("Libro borrado");
+					limpiarCampos();
 				}
 				else
-					System.out.println("No ha sido borrado");
-			break;
+					vista.getOutMsg().setText("Libro NO borrado");
+				break;
+				
+			case "Ejemplar":
+				Ejemplar ejemplarABorrar = generarEjemplar();
+				int reply_1 = JOptionPane.showConfirmDialog(vista, "¿Seguro que desea borrar el ejemplar?", "Confirmación", JOptionPane.YES_NO_OPTION);
+				if (reply_1 == JOptionPane.YES_NO_OPTION) {
+					listaEjemplares.remove(ejemplarABorrar);
+					ejemplarDAO.borrarEjemplar(ejemplarABorrar);
+					vista.getOutMsg().setText("Ejemplar borrado");
+					limpiarCampos();
+				}
+				else
+					vista.getOutMsg().setText("Ejemplar NO borrado");
+				break;
+				
+			case "Socio":
+				Socio socioABorrar = generarSocio();
+				int reply_2 = JOptionPane.showConfirmDialog(vista, "¿Seguro que desea borrar el socio?", "Confirmación", JOptionPane.YES_NO_OPTION);
+				if (reply_2 == JOptionPane.YES_NO_OPTION) {
+					listaSocios.remove(socioABorrar);
+					socioDAO.borrarSocio(socioABorrar);
+					vista.getOutMsg().setText("Socio borrado");
+					limpiarCampos();
+				}
+				else
+					vista.getOutMsg().setText("Socio NO borrado");
+				break;
+				
+			case "Préstamo":
+				JOptionPane.showMessageDialog(vista, "No pueden eliminarse campos del registro de préstamos");
+				limpiarCampos();
+				break;
+				
+			default:
+				JOptionPane.showMessageDialog(vista, "Para borrar un objeto, primero tienes que hacer esto:\n" + 
+						"1. Cargar... (el tipo de objeto que quieras introducir)\n" + 
+						"2. Rellenar los campos obligatorios y asegurarte de que son correctos los datos");
+				limpiarCampos();
+			}
+			
+		break; // Fin de la opción "borrar"
+			
+			
 			
 		case "Actualizar":
-			System.out.println("Socio actualizado");
-			break;
 			
+			switch(tipoObjeto)
+			{
+			case "Libro":
+				JOptionPane.showMessageDialog(vista, "No puede modificarse un libro ya insertado por motivos de seguridad");
+				break;
+				
+			case "Ejemplar":
+				JOptionPane.showMessageDialog(vista, "No puede modificarse un ejemplar ya insertado por motivos de seguridad");
+				break;
+				
+			case "Socio":
+				JOptionPane.showMessageDialog(vista, "No puede modificarse un socio ya insertado por motivos de seguridad");
+				break;
+				
+			case "Préstamo":
+				Prestamo prestamoAActualizar = generarPrestamo();
+				prestamoDAO.actualizarPrestamo(prestamoAActualizar);
+				vista.getOutMsg().setText("Préstamo finalizado");
+			}
+			
+		break; // Fin de la opción "actualizar"
+			
+		
+		
 		case "... Libros":
 			setTipoObjeto("Libro");
+			vista.getWhere().setText(tipoObjeto);
+			limpiarSalida();
 			mostrarLibro(0);
 			break;
 			
 		case "... Ejemplares":
 			setTipoObjeto("Ejemplar");
+			vista.getWhere().setText(tipoObjeto);
+			limpiarSalida();
 			mostrarEjemplar(0);
 			break;
 			
 		case "... Socios":
 			setTipoObjeto("Socio");
+			vista.getWhere().setText(tipoObjeto);
+			limpiarSalida();
 			mostrarSocio(0);
 			break;
 			
 		case "... Préstamos":
 			setTipoObjeto("Préstamo");
+			vista.getWhere().setText(tipoObjeto);
+			limpiarSalida();
 			mostrarPrestamo(0);
 			break;
 			
@@ -167,6 +245,9 @@ public class Controlador implements ActionListener {
 		vista.getMntmPrestamos() .addActionListener(escuchante);
 		vista.getMntmVersin()	 .addActionListener(escuchante);
 		vista.getMntmCrditos()	 .addActionListener(escuchante);
+		vista.getWhere()		 .addActionListener(escuchante);
+		vista.getOutMsg()		 .addActionListener(escuchante);
+		
 	}
 
 	private void limpiarCampos() {
@@ -174,6 +255,10 @@ public class Controlador implements ActionListener {
 		vista.getTextField_1().setText("");
 		vista.getTextField_2().setText("");
 		vista.getTextField_3().setText("");
+	}
+	
+	private void limpiarSalida() {
+		vista.getOutMsg().setText("");
 	}
 	
 	private Socio generarSocio() {

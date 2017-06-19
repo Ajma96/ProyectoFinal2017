@@ -2,7 +2,7 @@ package modelo.DAO;
 
 import java.time.LocalDate;
 
-public class Prestamo {
+public class Prestamo implements Comparable<Prestamo> {
 	
 	private String dni;
 	private String isbn;
@@ -55,6 +55,12 @@ public class Prestamo {
 	public String toString() {
 		return "Prestamo [fechaPrestamo=" + fechaPrestamo + ", dni=" + dni + ", isbn=" + isbn + ", idEjemplar="
 				+ idEjemplar + "]";
+	}
+
+
+	@Override
+	public int compareTo(Prestamo o) {
+		return fechaPrestamo.compareTo(o.fechaPrestamo);
 	}
 
 }
