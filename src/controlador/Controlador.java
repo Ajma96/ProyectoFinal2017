@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import modelo.DAO.Ejemplar;
 import modelo.DAO.EjemplarDAO;
@@ -225,7 +227,7 @@ public class Controlador implements ActionListener {
 			break;
 			
 		case "Versión":
-			JOptionPane.showMessageDialog(vista, "Versión 0.1");
+			JOptionPane.showMessageDialog(vista, "Gestor de bibliotecas iNutil\n\nVersión 0.1");
 			break;
 			
 		case "Créditos":
@@ -253,6 +255,21 @@ public class Controlador implements ActionListener {
 		vista.getMntmCrditos()	 .addActionListener(escuchante);
 		vista.getWhere()		 .addActionListener(escuchante);
 		vista.getOutMsg()		 .addActionListener(escuchante);
+		/*vista.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				//refrescarTabla();
+				vista.getTextField_0().setText(vista.getTable().getValueAt(vista.getTable().getSelectedRow(), 0).toString());
+				
+				vista.getTextField_1().setText(vista.getTable().getValueAt(vista.getTable().getSelectedRow(), 1).toString());
+				
+				vista.getTextField_2().setText(vista.getTable().getValueAt(vista.getTable().getSelectedRow(), 2).toString());
+				
+				vista.getTextField_3().setText(vista.getTable().getValueAt(vista.getTable().getSelectedRow(), 3).toString());
+				//refrescarTabla();
+			}
+		});*/
 		
 	}
 
