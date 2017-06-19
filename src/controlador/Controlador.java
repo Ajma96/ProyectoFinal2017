@@ -22,14 +22,16 @@ import vista.Vista;
 public class Controlador implements ActionListener {
 
 	private Vista vista;
-	private SocioDAO socioDAO;
-	private List<Socio> listaSocios;
-	private LibroDAO libroDAO;
-	private List<Libro> listaLibros;
+	
+	private LibroDAO 	libroDAO;
 	private EjemplarDAO ejemplarDAO;
-	private List<Ejemplar> listaEjemplares;
+	private SocioDAO 	socioDAO;
 	private PrestamoDAO prestamoDAO;
-	private List<Prestamo> listaPrestamos;
+	
+	private List<Libro> 	listaLibros;
+	private List<Ejemplar>  listaEjemplares;
+	private List<Socio> 	listaSocios;
+	private List<Prestamo> 	listaPrestamos;
 	
 	private static String tipoObjeto = "";
 	
@@ -323,6 +325,10 @@ public class Controlador implements ActionListener {
 		vista.getTextField_1().setText(listaPrestamos.get(index).getIsbn());
 		vista.getTextField_2().setText(listaPrestamos.get(index).getIdEjemplar());
 		vista.getTextField_3().setText(listaPrestamos.get(index).getFechaPrestamo().toString());
+	}
+	
+	public static String getTipoObjeto() {
+		return tipoObjeto;
 	}
 	
 	public static void setTipoObjeto(String tipo) {

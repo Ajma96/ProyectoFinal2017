@@ -12,24 +12,29 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+@SuppressWarnings("serial")
 public class Vista extends JFrame {
 	
 	private JTextField textField_0;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTextField outMsg;
+	private JTextField where;
+	
 	private JTable table;
+	
 	private JButton btnAadir;
 	private JButton btnBorrar;
 	private JButton btnActualizar;
+	
 	private JMenuItem mntmLibros;
 	private JMenuItem mntmEjemplares;
 	private JMenuItem mntmSocios;
 	private JMenuItem mntmPrstamos;
 	private JMenuItem mntmVersin;
 	private JMenuItem mntmCrditos;
-	private JTextField outMsg;
-	private JTextField where;
+
 
 
 
