@@ -196,32 +196,48 @@ public class Controlador implements ActionListener {
 		
 		case "... Libros":
 			setTipoObjeto("Libro");
-			refrescarTabla();
 			vista.getWhere().setText(tipoObjeto);
+			limpiarCampos();
+			refrescarTabla();
+			
+			
+			
 			limpiarSalida();
 			mostrarLibro(0);
 			break;
 			
 		case "... Ejemplares":
 			setTipoObjeto("Ejemplar");
-			refrescarTabla();
 			vista.getWhere().setText(tipoObjeto);
+			limpiarCampos();
+			refrescarTabla();
+			
+			
+			
 			limpiarSalida();
 			mostrarEjemplar(0);
 			break;
 			
 		case "... Socios":
 			setTipoObjeto("Socio");
-			refrescarTabla();
 			vista.getWhere().setText(tipoObjeto);
+			limpiarCampos();
+			refrescarTabla();
+			
+			
+			
 			limpiarSalida();
 			mostrarSocio(0);
 			break;
 			
 		case "... Préstamos":
 			setTipoObjeto("Préstamo");
-			refrescarTabla();
 			vista.getWhere().setText(tipoObjeto);
+			limpiarCampos();
+			refrescarTabla();
+			
+			
+			
 			limpiarSalida();
 			mostrarPrestamo(0);
 			break;
@@ -255,7 +271,7 @@ public class Controlador implements ActionListener {
 		vista.getMntmCrditos()	 .addActionListener(escuchante);
 		vista.getWhere()		 .addActionListener(escuchante);
 		vista.getOutMsg()		 .addActionListener(escuchante);
-		/*vista.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		vista.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -269,7 +285,7 @@ public class Controlador implements ActionListener {
 				vista.getTextField_3().setText(vista.getTable().getValueAt(vista.getTable().getSelectedRow(), 3).toString());
 				//refrescarTabla();
 			}
-		});*/
+		});
 		
 	}
 
