@@ -23,17 +23,17 @@ public class Controlador implements ActionListener {
 
 	private Vista vista;
 	
-	private LibroDAO 	libroDAO;
-	private EjemplarDAO ejemplarDAO;
-	private SocioDAO 	socioDAO;
-	private PrestamoDAO prestamoDAO;
+	private LibroDAO 		libroDAO;
+	private EjemplarDAO 	ejemplarDAO;
+	private SocioDAO 		socioDAO;
+	private PrestamoDAO 	prestamoDAO;
 	
 	private List<Libro> 	listaLibros;
 	private List<Ejemplar>  listaEjemplares;
 	private List<Socio> 	listaSocios;
 	private List<Prestamo> 	listaPrestamos;
 	
-	private static String tipoObjeto = "Libro";
+	private static String tipoObjeto = "";
 	
 	
 	

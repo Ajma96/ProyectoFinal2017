@@ -13,12 +13,12 @@ import modelo.DAO.SocioDAO;
 public class TableMode extends AbstractTableModel implements TableModelListener {
 	private static Object[][] data;
 	private static String[] nombresDeColumna;
-	private static String tipoObjeto = Controlador.getTipoObjeto();
 	
-	private static String[] nombresColumnaLibro = {"ISBN", "Título", "Autores", "Temáticas"};
-	private static String[] nombresColumnaEjemplar = {"ID del ejemplar", "ISBN", "Editorial", "Edición"};
-	private static String[] nombresColumnaSocio = {"DNI", "Nombre", "Apellidos", "Fecha de alta"};
-	private static String[] nombresColumnaPrestamo = {"DNI", "ISBN", "ID del ejemplar", "Fecha de inicio del préstamo"};
+	private static String[] nombresColumnaLibro 	= {"ISBN", "Título", "Autores", "Temáticas"};
+	private static String[] nombresColumnaEjemplar  = {"ID del ejemplar", "ISBN", "Editorial", "Edición"};
+	private static String[] nombresColumnaSocio 	= {"DNI", "Nombre", "Apellidos", "Fecha de alta"};
+	private static String[] nombresColumnaPrestamo  = {"DNI", "ISBN", "ID del ejemplar", "Fecha de inicio del préstamo"};
+	
 	
 	
 	public TableMode() {
@@ -27,7 +27,8 @@ public class TableMode extends AbstractTableModel implements TableModelListener 
 	}
 	
 	private static void inicializar() {
-		switch (tipoObjeto) {
+		
+		switch (Controlador.getTipoObjeto()) {
 		
 		case "Libro":
 			nombresDeColumna = nombresColumnaLibro;
@@ -50,6 +51,12 @@ public class TableMode extends AbstractTableModel implements TableModelListener 
 		case "Préstamo":
 			nombresDeColumna = nombresColumnaPrestamo;
 			data = PrestamoDAO.listaAMatriz(new PrestamoDAO().getListaPrestamos());
+			
+			break;
+			
+		default:
+			nombresDeColumna = nombresColumnaLibro;
+			data = LibroDAO.listaAMatriz(new LibroDAO().getListaLibros());
 			
 			break;
 		}
@@ -93,7 +100,7 @@ public class TableMode extends AbstractTableModel implements TableModelListener 
 	public void tableChanged(TableModelEvent e) {
 		int row = e.getFirstRow(); 
         int column = e.getColumn();
-        TableModeLibros modelo = (TableModeLibros)e.getSource();
+        TableMode modelo = (TableMode)e.getSource();
         String nombreDeColumna = modelo.getColumnName(column);
         Object data = modelo.getValueAt(row, column);
         System.out.printf("Cambio en la fila %d, en la columna %d,"
@@ -104,7 +111,6 @@ public class TableMode extends AbstractTableModel implements TableModelListener 
 	public String getColumnName(int column) {
 		return nombresDeColumna[column];
 	}
-	
 	
 }
 
