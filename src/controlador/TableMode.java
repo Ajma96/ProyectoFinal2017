@@ -9,6 +9,7 @@ import modelo.DAO.LibroDAO;
 import modelo.DAO.PrestamoDAO;
 import modelo.DAO.SocioDAO;
 
+@SuppressWarnings("serial")
 public class TableMode extends AbstractTableModel implements TableModelListener {
 	private static Object[][] data;
 	private static String[] nombresDeColumna;
@@ -18,26 +19,6 @@ public class TableMode extends AbstractTableModel implements TableModelListener 
 	private static String[] nombresColumnaEjemplar = {"ID del ejemplar", "ISBN", "Editorial", "Edición"};
 	private static String[] nombresColumnaSocio = {"DNI", "Nombre", "Apellidos", "Fecha de alta"};
 	private static String[] nombresColumnaPrestamo = {"DNI", "ISBN", "ID del ejemplar", "Fecha de inicio del préstamo"};
-	
-	
-	
-	
-
-	
-	/*private static String[] nombresDeColumna = 
-	{
-			"ID",
-            "ISBN",
-            "Editorial",
-            "Edición"
-    };*/
-
-	//private static Object[][] data = { EjemplarDAO.listaAMatriz(new EjemplarDAO().getListaEjemplares()) };
-
-	/*switch(Controlador.tipoObjeto) {
-	case "":
-		break;
-	}*/
 	
 	
 	public TableMode() {

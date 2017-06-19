@@ -12,6 +12,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import controlador.TableMode;
+
 @SuppressWarnings("serial")
 public class Vista extends JFrame {
 	
@@ -230,7 +232,7 @@ public class Vista extends JFrame {
 					.addContainerGap())
 		);
 		
-		table = new JTable();
+		table = new JTable(new TableMode());
 		scrollPane.setViewportView(table);
 		getContentPane().setLayout(groupLayout);
 	}

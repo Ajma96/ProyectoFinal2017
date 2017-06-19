@@ -33,7 +33,7 @@ public class Controlador implements ActionListener {
 	private List<Socio> 	listaSocios;
 	private List<Prestamo> 	listaPrestamos;
 	
-	private static String tipoObjeto = "";
+	private static String tipoObjeto = "Libro";
 	
 	
 	
@@ -194,6 +194,7 @@ public class Controlador implements ActionListener {
 		
 		case "... Libros":
 			setTipoObjeto("Libro");
+			refrescarTabla();
 			vista.getWhere().setText(tipoObjeto);
 			limpiarSalida();
 			mostrarLibro(0);
@@ -201,6 +202,7 @@ public class Controlador implements ActionListener {
 			
 		case "... Ejemplares":
 			setTipoObjeto("Ejemplar");
+			refrescarTabla();
 			vista.getWhere().setText(tipoObjeto);
 			limpiarSalida();
 			mostrarEjemplar(0);
@@ -208,6 +210,7 @@ public class Controlador implements ActionListener {
 			
 		case "... Socios":
 			setTipoObjeto("Socio");
+			refrescarTabla();
 			vista.getWhere().setText(tipoObjeto);
 			limpiarSalida();
 			mostrarSocio(0);
@@ -215,6 +218,7 @@ public class Controlador implements ActionListener {
 			
 		case "... Préstamos":
 			setTipoObjeto("Préstamo");
+			refrescarTabla();
 			vista.getWhere().setText(tipoObjeto);
 			limpiarSalida();
 			mostrarPrestamo(0);
@@ -333,6 +337,11 @@ public class Controlador implements ActionListener {
 	
 	public static void setTipoObjeto(String tipo) {
 		tipoObjeto = tipo;
+	}
+	
+	public void refrescarTabla() {
+		vista.getTable().setModel(new TableMode());
+		vista.getTable().repaint();
 	}
 	
 	private static LocalDate pasarDeCadenaAFecha(String fecha) {
