@@ -11,6 +11,7 @@ public class Prestamo implements Comparable<Prestamo> {
 	
 	
 	public Prestamo(String dni, String isbn, String idEjemplar, LocalDate fechaPrestamo) {
+		
 		this.dni 			= dni;
 		this.isbn 			= isbn;
 		this.idEjemplar 	= idEjemplar;
@@ -50,13 +51,11 @@ public class Prestamo implements Comparable<Prestamo> {
 		this.idEjemplar = idEjemplar;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Prestamo [fechaPrestamo=" + fechaPrestamo + ", dni=" + dni + ", isbn=" + isbn + ", idEjemplar="
 				+ idEjemplar + "]";
 	}
-
 
 	@Override
 	public int compareTo(Prestamo o) {

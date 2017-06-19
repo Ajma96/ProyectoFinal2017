@@ -1,6 +1,7 @@
 package modelo.DAO;
 
-public class Ejemplar implements Comparable<Ejemplar>{
+public class Ejemplar implements Comparable<Ejemplar> {
+	
 	private int idEjemplar;
 	private String isbn;
 	private String editorial;
@@ -8,6 +9,7 @@ public class Ejemplar implements Comparable<Ejemplar>{
 	
 	
 	public Ejemplar(int idEjemplar, String isbn, String editorial, int edicion) {
+		
 		this.idEjemplar = idEjemplar;
 		this.isbn 		= isbn;
 		this.editorial 	= editorial;
@@ -47,13 +49,11 @@ public class Ejemplar implements Comparable<Ejemplar>{
 		this.edicion = edicion;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Ejemplar [idEjemplar=" + idEjemplar + ", isbn=" + isbn + ", editorial=" + editorial + ", edicion="
 				+ edicion + "]";
 	}
-
 
 	@Override
 	public int compareTo(Ejemplar o) {

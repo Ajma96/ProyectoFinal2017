@@ -37,23 +37,19 @@ public class Vista extends JFrame {
 	private JMenuItem mntmVersin;
 	private JMenuItem mntmCrditos;
 
-
-
+	
 
 	public JTextField getTextField_0() {
 		return textField_0;
 	}
 
-
 	public JTextField getTextField_1() {
 		return textField_1;
 	}
 
-
 	public JTextField getTextField_2() {
 		return textField_2;
 	}
-
 
 	public JTextField getTextField_3() {
 		return textField_3;
@@ -71,16 +67,13 @@ public class Vista extends JFrame {
 		return table;
 	}
 
-
 	public JButton getBtnAadir() {
 		return btnAadir;
 	}
 
-
 	public JButton getBtnBorrar() {
 		return btnBorrar;
 	}
-
 	
 	public JButton getBtnActualizar() {
 		return btnActualizar;
@@ -110,10 +103,9 @@ public class Vista extends JFrame {
 		return mntmCrditos;
 	}
 	
-	
-	
 
 	public Vista() {
+		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 519);
@@ -235,6 +227,7 @@ public class Vista extends JFrame {
 		table = new JTable(new TableMode());
 		scrollPane.setViewportView(table);
 		getContentPane().setLayout(groupLayout);
+		
 	}
 	
 }

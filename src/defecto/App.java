@@ -1,5 +1,11 @@
 package defecto;
 
+/**
+ * @author Alejandro Macías
+ * @version 0.1
+ * @program iNutil Database Manager
+ */
+
 import java.awt.EventQueue;
 
 import controlador.Controlador;
@@ -29,3 +35,11 @@ public class App {
 		});
 	}
 }
+
+
+
+
+
+
+
+

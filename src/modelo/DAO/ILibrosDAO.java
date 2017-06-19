@@ -11,4 +11,12 @@ public interface ILibrosDAO {
 	boolean borrarLibro(Libro libroParaBorrar);
 	
 	boolean estaLibroDisponible(String isbn);
+	
 }
+
+
+
+
+
+
+

@@ -16,13 +16,16 @@ public class LibroDAO implements ILibrosDAO {
 	
 	@Override
 	public List<Libro> getListaLibros() {
+		
 		List<Libro> listaLibros = new ArrayList<>();
 		String sql = "SELECT * FROM LIBROS;";
 		
 		try {
 			Statement statement = conexion.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);
-			while(resultSet.next()){
+			
+			while(resultSet.next()) {
+				
 				String isbn = resultSet.getString("ISBN");
 				String titulo = resultSet.getString("TITULO");
 				String autores = resultSet.getString("AUTORES");
@@ -41,6 +44,7 @@ public class LibroDAO implements ILibrosDAO {
 	
 	@Override
 	public boolean estaLibroDisponible(String isbn) {
+		
 		String sql = "SELECT COUNT(ISBN) FROM LIBROS WHERE ISBN = ?;";
 		boolean libroDisponible = false;
 		
@@ -60,6 +64,7 @@ public class LibroDAO implements ILibrosDAO {
 
 	@Override
 	public boolean addLibro(Libro libroNuevo) {
+		
 		int resultado = 0;
 		String sql = "INSERT INTO LIBROS VALUES (?,?,?,?);";
 		
@@ -83,6 +88,7 @@ public class LibroDAO implements ILibrosDAO {
 
 	@Override
 	public boolean borrarLibro(Libro libroParaBorrar) {
+		
 		int resultado = 0;
 		String sql = "DELETE FROM LIBROS WHERE ISBN = ?;";
 		
@@ -100,6 +106,7 @@ public class LibroDAO implements ILibrosDAO {
 	}
 
 	public static Object [][] listaAMatriz (List<Libro> lista) {
+		
 		Object [][] matriz = new Object [lista.size()][4];
 			
 			for (int i=0 ; i < lista.size() ; i++) {

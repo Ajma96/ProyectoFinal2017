@@ -11,4 +11,11 @@ public interface IEjemplaresDAO {
 	boolean addEjemplar(Ejemplar ejemplarNuevo);
 	
 	boolean borrarEjemplar(Ejemplar ejemplarParaBorrar);
+	
 }
+
+
+
+
+
+

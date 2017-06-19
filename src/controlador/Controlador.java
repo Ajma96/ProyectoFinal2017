@@ -35,7 +35,7 @@ public class Controlador implements ActionListener {
 	private List<Socio> 	listaSocios;
 	private List<Prestamo> 	listaPrestamos;
 	
-	private static String tipoObjeto = "";
+	private static String tipoObjeto = "Libro";
 	
 	
 	
@@ -53,6 +53,7 @@ public class Controlador implements ActionListener {
 		listaLibros 	= libroDAO.getListaLibros();
 		listaEjemplares = ejemplarDAO.getListaEjemplares();
 		listaPrestamos  = prestamoDAO.getListaPrestamos();
+		
 	}
 
 
@@ -113,6 +114,7 @@ public class Controlador implements ActionListener {
 			
 			switch (tipoObjeto)
 			{
+			
 			case "Libro":
 				Libro libroABorrar = generarLibro();
 				int reply_0 = JOptionPane.showConfirmDialog(vista, "¿Seguro que desea borrar el libro?", "Confirmación", JOptionPane.YES_NO_OPTION);
@@ -172,6 +174,7 @@ public class Controlador implements ActionListener {
 			
 			switch(tipoObjeto)
 			{
+			
 			case "Libro":
 				JOptionPane.showMessageDialog(vista, "No puede modificarse un libro ya insertado por motivos de seguridad");
 				break;
@@ -190,7 +193,7 @@ public class Controlador implements ActionListener {
 				vista.getOutMsg().setText("Préstamo finalizado");
 			}
 			
-		break; // Fin de la opción "actualizar"
+			break; // Fin de la opción "actualizar"
 			
 		
 		
@@ -199,57 +202,51 @@ public class Controlador implements ActionListener {
 			vista.getWhere().setText(tipoObjeto);
 			limpiarCampos();
 			refrescarTabla();
-			
-			
-			
 			limpiarSalida();
 			mostrarLibro(0);
 			break;
+			
 			
 		case "... Ejemplares":
 			setTipoObjeto("Ejemplar");
 			vista.getWhere().setText(tipoObjeto);
 			limpiarCampos();
 			refrescarTabla();
-			
-			
-			
 			limpiarSalida();
 			mostrarEjemplar(0);
 			break;
+			
 			
 		case "... Socios":
 			setTipoObjeto("Socio");
 			vista.getWhere().setText(tipoObjeto);
 			limpiarCampos();
 			refrescarTabla();
-			
-			
-			
 			limpiarSalida();
 			mostrarSocio(0);
 			break;
+			
 			
 		case "... Préstamos":
 			setTipoObjeto("Préstamo");
 			vista.getWhere().setText(tipoObjeto);
 			limpiarCampos();
 			refrescarTabla();
-			
-			
-			
 			limpiarSalida();
 			mostrarPrestamo(0);
 			break;
+			
 			
 		case "Versión":
 			JOptionPane.showMessageDialog(vista, "Gestor de bibliotecas iNutil\n\nVersión 0.1");
 			break;
 			
+			
 		case "Créditos":
 			JOptionPane.showMessageDialog(vista, "Programa desarrollado por Alejandro Macías Alcázar\n" + 
 											"\nMención especial a Ángel por echarme una mano con las dudas");
 			break;
+			
 			
 		default: System.out.println("Error: actionPerformed desconocida");
 		
@@ -271,6 +268,7 @@ public class Controlador implements ActionListener {
 		vista.getMntmCrditos()	 .addActionListener(escuchante);
 		vista.getWhere()		 .addActionListener(escuchante);
 		vista.getOutMsg()		 .addActionListener(escuchante);
+		
 		vista.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
@@ -374,7 +372,7 @@ public class Controlador implements ActionListener {
 	
 	public void refrescarTabla() {
 		vista.getTable().setModel(new TableMode());
-		vista.getTable().repaint();
+		//vista.getTable().repaint();
 	}
 	
 	private static LocalDate pasarDeCadenaAFecha(String fecha) {

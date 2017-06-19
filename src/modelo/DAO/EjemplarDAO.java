@@ -16,6 +16,7 @@ public class EjemplarDAO implements IEjemplaresDAO{
 	
 	@Override
 	public List<Ejemplar> getListaEjemplares() {
+		
 		List<Ejemplar> listaEjemplares = new ArrayList<>();
 		String sql = "SELECT * FROM EJEMPLARES ORDER BY ID_EJEMPLAR;";
 		
@@ -24,7 +25,7 @@ public class EjemplarDAO implements IEjemplaresDAO{
 			ResultSet resultSet = statement.executeQuery(sql);
 			
 			while(resultSet.next()){
-				int idEjemplar = resultSet.getInt("ID_EJEMPLAR"); //Autoid
+				int idEjemplar = resultSet.getInt("ID_EJEMPLAR");
 				String isbn = resultSet.getString("ISBN");
 				String editorial = resultSet.getString("EDITORIAL");
 				int edicion = resultSet.getInt("EDICION");
@@ -42,6 +43,7 @@ public class EjemplarDAO implements IEjemplaresDAO{
 	
 	@Override
 	public boolean existenEjemplares(String ISBN) {
+		
 		String sql = "SELECT COUNT(ID_EJEMPLAR) FROM EJEMPLARES WHERE ISBN = ?;";
 		boolean existenEjemplares = false;
 		
@@ -61,6 +63,7 @@ public class EjemplarDAO implements IEjemplaresDAO{
 
 	@Override
 	public boolean addEjemplar(Ejemplar ejemplarNuevo) {
+		
 		int resultado = 0;
 		String sql = "INSERT INTO EJEMPLARES VALUES (?,?,?,?);";
 		
@@ -84,6 +87,7 @@ public class EjemplarDAO implements IEjemplaresDAO{
 
 	@Override
 	public boolean borrarEjemplar(Ejemplar ejemplarParaBorrar) {
+		
 		int resultado = 0;
 		String sql = "DELETE FROM EJEMPLARES WHERE ISBN = ? AND ID_EJEMPLAR = ?;";
 		
@@ -102,6 +106,7 @@ public class EjemplarDAO implements IEjemplaresDAO{
 	}
 	
 	public static Object [][] listaAMatriz (List<Ejemplar> lista) {
+		
 		Object [][] matriz = new Object [lista.size()][4];
 			
 			for (int i=0 ; i < lista.size() ; i++) {
@@ -115,6 +120,8 @@ public class EjemplarDAO implements IEjemplaresDAO{
 	}
 
 }
+
+
 
 
 

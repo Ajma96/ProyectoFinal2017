@@ -18,6 +18,7 @@ public class SocioDAO implements ISociosDAO {
 	
 	@Override
 	public List<Socio> getListaSocios() {
+		
 		List<Socio> listaSocios = new ArrayList<>();
 		String sql = "SELECT * FROM SOCIOS ORDER BY DNI;";
 		
@@ -25,7 +26,8 @@ public class SocioDAO implements ISociosDAO {
 			Statement statement = conexion.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);
 			
-			while(resultSet.next()){
+			while(resultSet.next()) {
+				
 				String dni = resultSet.getString("DNI");
 				String nombre = resultSet.getString("NOMBRE");
 				String apellidos = resultSet.getString("APELLIDOS");
@@ -44,6 +46,7 @@ public class SocioDAO implements ISociosDAO {
 
 	@Override
 	public boolean existeSocio(String dni) {
+		
 		String sql = "SELECT COUNT(DNI) FROM SOCIOS WHERE DNI = ?;";
 		boolean existeSocio = false;
 		
@@ -63,6 +66,7 @@ public class SocioDAO implements ISociosDAO {
 
 	@Override
 	public boolean addSocio(Socio nuevoSocio) {
+		
 		int resultado = 0;
 		String sql = "INSERT INTO SOCIOS VALUES (?,?,?,?);";
 		
@@ -86,6 +90,7 @@ public class SocioDAO implements ISociosDAO {
 
 	@Override
 	public boolean borrarSocio(Socio socioABorrar) {
+		
 		int resultado = 0;
 		String sql = "DELETE FROM SOCIOS WHERE DNI = ?;";
 		
@@ -107,6 +112,7 @@ public class SocioDAO implements ISociosDAO {
 	}
 	
 	public static Object [][] listaAMatriz (List<Socio> lista) {
+		
 		Object [][] matriz = new Object [lista.size()][4];
 			
 			for (int i=0 ; i < lista.size() ; i++) {
@@ -120,6 +126,9 @@ public class SocioDAO implements ISociosDAO {
 	}
 
 }
+
+
+
 
 
 

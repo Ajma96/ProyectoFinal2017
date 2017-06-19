@@ -11,6 +11,7 @@ import modelo.DAO.SocioDAO;
 
 @SuppressWarnings("serial")
 public class TableMode extends AbstractTableModel implements TableModelListener {
+	
 	private static Object[][] data;
 	private static String[] nombresDeColumna;
 	
@@ -18,7 +19,6 @@ public class TableMode extends AbstractTableModel implements TableModelListener 
 	private static String[] nombresColumnaEjemplar  = {"ID del ejemplar", "ISBN", "Editorial", "Edición"};
 	private static String[] nombresColumnaSocio 	= {"DNI", "Nombre", "Apellidos", "Fecha de alta"};
 	private static String[] nombresColumnaPrestamo  = {"DNI", "ISBN", "ID del ejemplar", "Fecha de inicio del préstamo"};
-	
 	
 	
 	public TableMode() {
@@ -60,6 +60,7 @@ public class TableMode extends AbstractTableModel implements TableModelListener 
 			
 			break;
 		}
+		
 	}
 	
 	
@@ -75,7 +76,19 @@ public class TableMode extends AbstractTableModel implements TableModelListener 
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		return data[rowIndex][columnIndex];
+		 // Un extraño error me ha hecho crear los 4 casos para evitar petardeos
+		
+		if (rowIndex < 0 && columnIndex < 0)
+			return data[0][0];
+		
+		else if (rowIndex < 0 && columnIndex >= 0)
+			return data[0][columnIndex];
+		
+		else if (rowIndex >= 0 && columnIndex < 0)
+			return data[rowIndex][0];
+		
+		else
+			return data[rowIndex][columnIndex];
 	}
 
 	@Override
@@ -87,6 +100,7 @@ public class TableMode extends AbstractTableModel implements TableModelListener 
             return true;
         }
 	}
+	
 	@Override
 	public void setValueAt(Object value, int row, int col) {
         data[row][col] = value;

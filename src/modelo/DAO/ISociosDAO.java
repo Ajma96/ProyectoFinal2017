@@ -11,4 +11,12 @@ public interface ISociosDAO {
 	boolean addSocio(Socio nuevoSocio);
 	
 	boolean borrarSocio(Socio socioABorrar);
+	
 }
+
+
+
+
+
+
+

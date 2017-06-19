@@ -13,3 +13,10 @@ public interface IPrestamosDAO {
 	boolean actualizarPrestamo(Prestamo prestamo);
 	
 }
+
+
+
+
+
+
+

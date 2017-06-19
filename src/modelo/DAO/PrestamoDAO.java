@@ -18,6 +18,7 @@ public class PrestamoDAO implements IPrestamosDAO {
 	
 	@Override
 	public List<Prestamo> getListaPrestamos() {
+		
 		List<Prestamo> listaPrestamos = new ArrayList<>();
 		String sql = "SELECT * FROM PRESTAMOS;";
 		
@@ -25,7 +26,8 @@ public class PrestamoDAO implements IPrestamosDAO {
 			Statement statement = conexion.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);
 			
-			while(resultSet.next()){
+			while(resultSet.next()) {
+				
 				String dni = resultSet.getString("DNI");
 				String isbn = resultSet.getString("ISBN");
 				String idEjemplar = resultSet.getString("ID_EJEMPLAR");
@@ -44,6 +46,7 @@ public class PrestamoDAO implements IPrestamosDAO {
 
 	@Override
 	public boolean existenPrestamos(String dni, String isbn, String id_ejemplar) {
+		
 		String sql = "SELECT COUNT(DNI) FROM PRESTAMOS WHERE DNI = ? AND ISBN = ? AND ID_EJEMPLAR = ?;";
 		boolean existenPrestamos = false;
 		
@@ -65,6 +68,7 @@ public class PrestamoDAO implements IPrestamosDAO {
 
 	@Override
 	public boolean addPrestamo(Prestamo nuevoPrestamo) {
+		
 		int resultado = 0;
 		String sql = "INSERT INTO PRESTAMOS VALUES (?,?,?,?);";
 		
@@ -88,6 +92,7 @@ public class PrestamoDAO implements IPrestamosDAO {
 
 	@Override
 	public boolean actualizarPrestamo(Prestamo prestamo) {
+		
 		int resultado = 0;
 		String sql = "ALTER TABLE PRESTAMOS SET FECHA_DEVUELTO = " +
 				     "STRFTIME('%d/%m/%Y', (SUBSTR(DATETIME(CURRENT_TIMESTAMP, 'localtime'), 1, 10))) " + 
@@ -115,6 +120,7 @@ public class PrestamoDAO implements IPrestamosDAO {
 	}
 	
 	public static Object [][] listaAMatriz (List<Prestamo> lista) {
+		
 		Object [][] matriz = new Object [lista.size()][4];
 			
 			for (int i=0 ; i < lista.size() ; i++) {
